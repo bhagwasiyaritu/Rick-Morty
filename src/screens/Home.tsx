@@ -20,8 +20,8 @@ const Home = () => {
 
   const {data} = useQuery<GetCharactersQueryData>(GET_CHARACTERS);
 
-  const handleCharacterPress = (id: number) => {
-    navigation.navigate(RoutesName.details, {id});
+  const handleCharacterPress = (id: number, name: string) => {
+    navigation.navigate(RoutesName.details, {id, name});
   };
 
   return (
@@ -33,7 +33,7 @@ const Home = () => {
             image={item?.image}
             id={item?.id}
             gender={item?.gender}
-            onPress={() => handleCharacterPress(item?.id)}
+            onPress={() => handleCharacterPress(item?.id, item?.name)}
           />
         )}
         data={data?.characters?.results || []}

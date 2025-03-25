@@ -10,18 +10,19 @@ import {useQuery} from '@apollo/client';
 import {GET_CHARACTER} from '../queries/Queries';
 import FastImage from 'react-native-fast-image';
 import {CharacterData} from '../model/characterTypes';
-import {RouteProp} from '@react-navigation/native';
 import EpisodeItem from '../components/EpisodeItem';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../navigation/types';
+import {strings} from '../utils/constants';
 
-type DetailsRouteProp = RouteProp<{params: {id: string}}, 'params'>;
+type DetailsRouteProp = NativeStackScreenProps<RootStackParamList, 'details'>;
 
-const Details = ({route}: {route: DetailsRouteProp}) => {
+const Details: React.FC<DetailsRouteProp> = ({route}) => {
   const {id} = route.params;
   const {data, loading, error} = useQuery<CharacterData>(GET_CHARACTER, {
     variables: {characterId: id},
   });
   const {character} = data || {};
-  console.log('Character', data?.character);
 
   if (loading)
     return <ActivityIndicator size="large" className="color-violet-900" />;
@@ -44,6 +45,7 @@ const Details = ({route}: {route: DetailsRouteProp}) => {
       <Text className=" color-slate-500 font-semibold text-xs text-center">
         {character?.gender}
       </Text>
+      <Text className='px-4 text-2xl mt-8 font-semibold'>{strings.listOfEpisodes}</Text>
       <FlatList
         renderItem={({item}) => <EpisodeItem name={item?.name} id={id} />}
         data={character?.episode || []}

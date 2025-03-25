@@ -26,6 +26,6 @@ export interface CharacterData {
 }
 
 export interface Episode {
-  id: string;
+  id: number;
   name: string;
 }

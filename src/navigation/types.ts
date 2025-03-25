@@ -1,4 +1,5 @@
 export type RootStackParamList = {
   home: undefined ;
-  details: {id: number};
+  details: {id: number, name:string};
+  epidode: {id: number};
 };

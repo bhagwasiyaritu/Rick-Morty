@@ -8,7 +8,8 @@ import client from './src/client/ApolloClient';
 import RoutesName from './src/routes/routesName';
 
 import './global.css';
-import { RootStackParamList } from './src/navigation/types';
+import {RootStackParamList} from './src/navigation/types';
+import {headerTitle} from './src/utils/constants';
 
 const App = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -17,8 +18,16 @@ const App = () => {
     <ApolloProvider client={client}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName={RoutesName.home}>
-          <Stack.Screen name={RoutesName.home} component={Home} />
-          <Stack.Screen name={RoutesName.details} component={Details} />
+          <Stack.Screen
+            name={RoutesName.home}
+            component={Home}
+            options={{headerTitle: headerTitle.rickyMorty}}
+          />
+          <Stack.Screen
+            name={RoutesName.details}
+            component={Details}
+            options={({route}) => ({headerTitle: route?.params?.name})}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </ApolloProvider>
