@@ -1,14 +1,25 @@
-import {Text} from 'react-native';
+import {Text, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {Episode} from '../model/characterTypes';
+import {EpisodeItemProps} from '../model/characterTypes';
 
-const EpisodeItem: React.FC<Episode> = ({id, name}) => {
+const EpisodeItem: React.FC<EpisodeItemProps> = ({
+  id,
+  name,
+  episode,
+  onPress,
+}) => {
   return (
-    <Text
+    <TouchableOpacity
       key={id}
-      className="py-4 px-4 color-slate-500 font-semibold text-l text-start border-b-2 border-gray-200 ">
-      {name}
-    </Text>
+      className="flex-row border-b-2 border-gray-200 py-4 px-4"
+      onPress={onPress}>
+      <Text className="flex-1 color-slate-500 font-semibold text-l text-start  ">
+        {name}
+      </Text>
+      <Text className=" color-slate-500 font-semibold text-l text-end ">
+        {episode}
+      </Text>
+    </TouchableOpacity>
   );
 };
 

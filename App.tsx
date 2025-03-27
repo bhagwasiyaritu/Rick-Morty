@@ -10,6 +10,7 @@ import RoutesName from './src/routes/routesName';
 import './global.css';
 import {RootStackParamList} from './src/navigation/types';
 import {headerTitle} from './src/utils/constants';
+import Episode from './src/screens/Episode';
 
 const App = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -26,6 +27,11 @@ const App = () => {
           <Stack.Screen
             name={RoutesName.details}
             component={Details}
+            options={({route}) => ({headerTitle: route?.params?.name})}
+          />
+          <Stack.Screen
+            name={RoutesName.episode}
+            component={Episode}
             options={({route}) => ({headerTitle: route?.params?.name})}
           />
         </Stack.Navigator>

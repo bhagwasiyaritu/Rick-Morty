@@ -11,18 +11,20 @@ import {GET_CHARACTER} from '../queries/Queries';
 import FastImage from 'react-native-fast-image';
 import {CharacterData} from '../model/characterTypes';
 import EpisodeItem from '../components/EpisodeItem';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../navigation/types';
-import {strings} from '../utils/constants';
+import {DetailsProps} from '../navigation/types';
+import {labels} from '../utils/constants';
+import RoutesName from '../routes/routesName';
 
-type DetailsRouteProp = NativeStackScreenProps<RootStackParamList, 'details'>;
-
-const Details: React.FC<DetailsRouteProp> = ({route}) => {
+const Details = ({route, navigation}: DetailsProps) => {
   const {id} = route.params;
   const {data, loading, error} = useQuery<CharacterData>(GET_CHARACTER, {
     variables: {characterId: id},
   });
   const {character} = data || {};
+
+  const handleEpisodePress = (id: number, name: string) => {
+    navigation.navigate(RoutesName.episode, {id: id, name: name});
+  };
 
   if (loading)
     return <ActivityIndicator size="large" className="color-violet-900" />;
@@ -45,9 +47,18 @@ const Details: React.FC<DetailsRouteProp> = ({route}) => {
       <Text className=" color-slate-500 font-semibold text-xs text-center">
         {character?.gender}
       </Text>
-      <Text className='px-4 text-2xl mt-8 font-semibold'>{strings.listOfEpisodes}</Text>
+      <Text className="px-4 text-2xl mt-8 font-semibold">
+        {labels.listOfEpisodes}
+      </Text>
       <FlatList
-        renderItem={({item}) => <EpisodeItem name={item?.name} id={id} />}
+        renderItem={({item}) => (
+          <EpisodeItem
+            name={item?.name}
+            id={id}
+            episode={item?.episode}
+            onPress={() => handleEpisodePress(item?.id, item?.name)}
+          />
+        )}
         data={character?.episode || []}
         keyExtractor={item => `${item.id}`}
         removeClippedSubviews={true}

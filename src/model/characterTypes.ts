@@ -1,12 +1,13 @@
 export interface CharacterTypes {
   id: number;
   name: string;
-  gender: string;
+  gender?: string;
   image: string;
 }
 
 export interface CharacterItemProps extends CharacterTypes {
-  onPress: () => void;
+  onPress?: () => void;
+  activeOpacity?: number;
 }
 
 export interface GetCharactersQueryData {
@@ -28,4 +29,15 @@ export interface CharacterData {
 export interface Episode {
   id: number;
   name: string;
+  episode: string;
+  air_date?: string;
+  characters?: CharacterTypes[];
+}
+
+export interface EpisodeItemProps extends Episode {
+  onPress: () => void;
+}
+
+export interface EpisodeData {
+  episode: Episode;
 }

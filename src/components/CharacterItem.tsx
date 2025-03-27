@@ -9,9 +9,11 @@ const CharacterItem: React.FC<CharacterItemProps> = ({
   image,
   gender,
   onPress,
+  activeOpacity,
 }: CharacterItemProps) => {
   return (
     <TouchableOpacity
+      activeOpacity={activeOpacity}
       className="flex-row py-4 px-4 mb-4 border-b-2 border-gray-200 items-center"
       key={id}
       onPress={onPress}>

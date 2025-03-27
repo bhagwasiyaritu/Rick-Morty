@@ -3,6 +3,7 @@ export const headerTitle = {
     listOfEpisodes: 'List of Episodes',
 }
 
-export const strings = {
+export const labels = {
     listOfEpisodes: 'List of Episodes',
+    listOfCharacters: 'List of Characters',
 }

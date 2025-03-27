@@ -23,7 +23,25 @@ export const GET_CHARACTER = gql`
       episode {
         name
         id
+        episode
+        air_date
       }
+    }
+  }
+`;
+
+export const GET_EPISODE = gql`
+  query Episode($episodeId: ID!) {
+    episode(id: $episodeId) {
+      characters {
+        image
+        name
+        id
+      }
+      name
+      id
+      episode
+      air_date
     }
   }
 `;
