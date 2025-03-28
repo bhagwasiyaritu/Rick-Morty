@@ -13,11 +13,13 @@ const CharacterItem: React.FC<CharacterItemProps> = ({
 }: CharacterItemProps) => {
   return (
     <TouchableOpacity
+      testID="character-item"
       activeOpacity={activeOpacity}
       className="flex-row py-4 px-4 mb-4 border-b-2 border-gray-200 items-center"
       key={id}
       onPress={onPress}>
       <FastImage
+        testID="character-image"
         style={styles.image}
         source={{
           uri: image,

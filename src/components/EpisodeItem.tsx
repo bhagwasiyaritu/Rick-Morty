@@ -10,6 +10,7 @@ const EpisodeItem: React.FC<EpisodeItemProps> = ({
 }) => {
   return (
     <TouchableOpacity
+      testID="episode-item"
       key={id}
       className="flex-row border-b-2 border-gray-200 py-4 px-4"
       onPress={onPress}>
