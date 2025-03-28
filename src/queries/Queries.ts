@@ -1,12 +1,17 @@
 import {gql} from '@apollo/client';
 
 export const GET_CHARACTERS = gql`
-  query Characters {
-    characters {
+  query Characters($page: Int) {
+    characters(page: $page) {
+      info {
+        next
+        pages
+        prev
+      }
       results {
         id
-        image
         name
+        image
         gender
       }
     }

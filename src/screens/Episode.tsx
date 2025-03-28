@@ -1,10 +1,4 @@
-import {
-  ActivityIndicator,
-  FlatList,
-  SafeAreaView,
-  Text,
-  View,
-} from 'react-native';
+import {FlatList, SafeAreaView, Text, View} from 'react-native';
 import React from 'react';
 import {EpisodeProps} from '../navigation/types';
 import {useQuery} from '@apollo/client';
@@ -12,6 +6,7 @@ import {GET_EPISODE} from '../queries/Queries';
 import {EpisodeData} from '../model/characterTypes';
 import CharacterItem from '../components/CharacterItem';
 import {labels} from '../utils/constants';
+import Loader from '../components/Loader';
 
 const Episode = ({route}: EpisodeProps) => {
   const {id} = route.params;
@@ -20,10 +15,7 @@ const Episode = ({route}: EpisodeProps) => {
   });
   const {episode} = data || {};
 
-  console.log('data from episode', data);
-
-  if (loading)
-    return <ActivityIndicator size="large" className="color-violet-900" />;
+  if (loading) return <Loader />;
 
   if (error) return <Text>{'Error: ' + error.message}</Text>;
 
@@ -39,7 +31,12 @@ const Episode = ({route}: EpisodeProps) => {
       </View>
       <FlatList
         renderItem={({item}) => (
-          <CharacterItem name={item?.name} id={item?.id} image={item?.image} activeOpacity={1}/>
+          <CharacterItem
+            name={item?.name}
+            id={item?.id}
+            image={item?.image}
+            activeOpacity={1}
+          />
         )}
         data={episode?.characters || []}
         keyExtractor={item => `${item.id}`}

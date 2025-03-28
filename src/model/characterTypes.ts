@@ -12,6 +12,11 @@ export interface CharacterItemProps extends CharacterTypes {
 
 export interface GetCharactersQueryData {
   characters: {
+    info: {
+      next: number;
+      pages: number;
+      prev: number;
+    };
     results: CharacterTypes[];
   };
 }

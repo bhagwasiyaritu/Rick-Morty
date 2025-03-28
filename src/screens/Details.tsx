@@ -1,5 +1,4 @@
 import {
-  ActivityIndicator,
   FlatList,
   SafeAreaView,
   StyleSheet,
@@ -14,6 +13,7 @@ import EpisodeItem from '../components/EpisodeItem';
 import {DetailsProps} from '../navigation/types';
 import {labels} from '../utils/constants';
 import RoutesName from '../routes/routesName';
+import Loader from '../components/Loader';
 
 const Details = ({route, navigation}: DetailsProps) => {
   const {id} = route.params;
@@ -26,8 +26,7 @@ const Details = ({route, navigation}: DetailsProps) => {
     navigation.navigate(RoutesName.episode, {id: id, name: name});
   };
 
-  if (loading)
-    return <ActivityIndicator size="large" className="color-violet-900" />;
+  if (loading) return <Loader />;
 
   if (error) return <Text>{'Error: ' + error.message}</Text>;
 

@@ -1,5 +1,5 @@
 import {Text, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, {memo} from 'react';
 import {EpisodeItemProps} from '../model/characterTypes';
 
 const EpisodeItem: React.FC<EpisodeItemProps> = ({
@@ -23,4 +23,6 @@ const EpisodeItem: React.FC<EpisodeItemProps> = ({
   );
 };
 
-export default EpisodeItem;
+export default memo(EpisodeItem, (prevProps, nextProps) => {
+  return prevProps.id === nextProps.id;
+});

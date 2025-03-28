@@ -1,5 +1,5 @@
 import {Text, StyleSheet, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import React, {memo} from 'react';
 import FastImage from 'react-native-fast-image';
 import {CharacterItemProps} from '../model/characterTypes';
 
@@ -33,7 +33,9 @@ const CharacterItem: React.FC<CharacterItemProps> = ({
   );
 };
 
-export default CharacterItem;
+export default memo(CharacterItem, (prevProps, nextProps) => {
+  return prevProps.id === nextProps.id;
+});
 
 const styles = StyleSheet.create({
   image: {
