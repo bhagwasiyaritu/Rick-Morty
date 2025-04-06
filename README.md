@@ -13,7 +13,7 @@ A simple yet powerful React Native application built to practice and showcase mo
 
 🔧 Stack:
 
-1. React Native
+1. React Native (TypeScript)
 2. NativeWind
 3. GraphQL
 4. React Native Testing Library
